@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <!-- JavaBean 实现 序列化 接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <!-- genenat entity时,生成toString -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <!-- generate entity时，生成hashcode和equals方法-->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+
+        <!--&lt;!&ndash; 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ &ndash;&gt;
+        <plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">
+            <property name="searchString" value="Mapper" />
+            <property name="replaceString" value="Dao" />
+        </plugin>
+        &lt;!&ndash; 此处是将UserMapper.java改名为UserDao.java 接口 当然 想改成什么都行~  &ndash;&gt;
+        <plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">
+            <property name="searchString" value="Mapper$" />
+            <property name="replaceString" value="Dao" />
+        </plugin>-->
+
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/tgshop"
+                userId="root"
+                password="root">
+        </jdbcConnection>
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.bigdata.pojo"
+                            targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <sqlMapGenerator targetPackage="com.bigdata.mapper"
+                         targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.bigdata.mapper"
+                             targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 指定数据库表 -->
+        <table schema="" tableName="tb_order" domainObjectName="Order"/>
+        <table schema="" tableName="tb_order_item" domainObjectName="OrderItem"/>
+        <table schema="" tableName="tb_address" domainObjectName="Address"/>
+        <table schema="" tableName="tb_areas" domainObjectName="Areas"/>
+        <table schema="" tableName="tb_cities" domainObjectName="Cities"/>
+        <table schema="" tableName="tb_provinces" domainObjectName="Provinces"/>
+        <table schema="" tableName="tb_content" domainObjectName="Content"/>
+        <table schema="" tableName="tb_content_category" domainObjectName="ContentCategory"/>
+        <table schema="" tableName="tb_pay_log" domainObjectName="PayLog"/>
+        <table schema="" tableName="tb_seller" domainObjectName="Seller"/>
+        <table schema="" tableName="tb_user" domainObjectName="User"/>
+        <table schema="" tableName="tb_brand" domainObjectName="Brand"/>
+        <table schema="" tableName="tb_goods" domainObjectName="Goods"/>
+        <table schema="" tableName="tb_goods_desc" domainObjectName="GoodsDesc"/>
+        <table schema="" tableName="tb_specification" domainObjectName="Specification"/>
+        <table schema="" tableName="tb_specification_option" domainObjectName="SpecificationOption"/>
+        <table schema="" tableName="tb_type_template" domainObjectName="TypeTemplate"/>
+        <table schema="" tableName="tb_freight_template" domainObjectName="FreightTemplate"/>
+        <table schema="" tableName="tb_item_cat" domainObjectName="ItemCat"/>
+        <table schema="" tableName="tb_item" domainObjectName="Item"/>
+        <table schema="" tableName="tb_seckill_goods" domainObjectName="SeckillGoods"/>
+        <table schema="" tableName="tb_seckill_order" domainObjectName="SeckillOrder"/>
+
+
+        <!-- 有些表的字段需要指定java类型
+         <table schema="" tableName="">
+            <columnOverride column="" javaType="" />
+        </table> -->
+    </context>
+</generatorConfiguration>
